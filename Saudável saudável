@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receitas Saudáveis - Comida que Faz Bem</title>
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(to right, #4CAF50, #45a049);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: #ffeb3b;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #ffeb3b;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 5rem 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Anúncios */
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+        }
+        
+        .ad-banner {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border: 1px dashed #4CAF50;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            width: 100%;
+            max-width: 728px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .ad-title {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ad-text {
+            color: #555;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .ad-cta {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .ad-cta:hover {
+            background: #45a049;
+        }
+        
+        .ad-sidebar {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border: 1px dashed #4CAF50;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        
+        /* Categorias */
+        .categories {
+            padding: 2rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #4CAF50;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #4CAF50;
+            margin: 10px auto;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        
+        .category-card h3 {
+            padding: 1rem;
+            text-align: center;
+            color: #4CAF50;
+        }
+        
+        /* Receitas */
+        .recipes {
+            padding: 2rem 0;
+        }
+        
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .recipe-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .recipe-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .recipe-content {
+            padding: 1.5rem;
+        }
+        
+        .recipe-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .recipe-description {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        
+        .recipe-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tag {
+            background: #e8f5e9;
+            color: #4CAF50;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        /* Sobre */
+        .about {
+            background: white;
+            padding: 3rem 0;
+            margin: 2rem 0;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(to right, #4CAF50, #45a049);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .newsletter-form button {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            color: #4CAF50;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #4CAF50;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            background: #4CAF50;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: #45a049;
+            transform: translateY(-3px);
+        }
+        
+        .crypto-address {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-family: monospace;
+            word-break: break-all;
+            font-size: 0.85rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Layout com sidebar */
+        .main-with-sidebar {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .main-content {
+            flex: 3;
+        }
+        
+        .sidebar {
+            flex: 1;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .newsletter-form input, 
+            .newsletter-form button {
+                width: 100%;
+                border-radius: 4px;
+            }
+            
+            .main-with-sidebar {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header com anúncio -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">Receitas<span>Saudáveis</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#receitas">Receitas</a></li>
+                    <li><a href="#categorias">Categorias</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Anúncio topo -->
+    <div class="ad-container">
+        <div class="ad-banner">
+            <div class="ad-title">PATROCINADO: Livro de Receitas Fit</div>
+            <div class="ad-text">Mais de 100 receitas saudáveis para transformar sua alimentação</div>
+            <button class="ad-cta">Compre Agora - R$ 29,90</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Descubra Receitas Saudáveis e Deliciosas</h1>
+            <p>Transforme sua alimentação com nossas receitas nutritivas, fáceis de preparar e cheias de sabor</p>
+            <a href="#receitas" class="btn">Explorar Receitas</a>
+        </div>
+    </section>
+
+    <div class="container main-with-sidebar">
+        <div class="main-content">
+            <!-- Categorias -->
+            <section class="categories" id="categorias">
+                <h2 class="section-title">Categorias</h2>
+                <div class="category-grid">
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Saladas">
+                        <h3>Saladas</h3>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Smoothies">
+                        <h3>Smoothies</h3>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pratos Principais">
+                        <h3>Pratos Principais</h3>
+                    </div>
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Sobremesas Saudáveis">
+                        <h3>Sobremesas Saudáveis</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Anúncio entre seções -->
+            <div class="ad-container">
+                <div class="ad-banner">
+                    <div class="ad-title">OFERTA ESPECIAL: Assinatura Premium</div>
+                    <div class="ad-text">Acesso a receitas exclusivas e plano alimentar personalizado</div>
+                    <button class="ad-cta">Experimente 7 Dias Grátis</button>
+                </div>
+            </div>
+
+            <!-- Receitas -->
+            <section class="recipes" id="receitas">
+                <h2 class="section-title">Receitas em Destaque</h2>
+                <div class="recipe-grid">
+                    <!-- Receita 1 -->
+                    <div class="recipe-card">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Bowl de Quinoa" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3 class="recipe-title">Bowl de Quinoa com Abacate</h3>
+                            <div class="recipe-meta">
+                                <span>⏱ 20 min</span>
+                                <span>🥗 Fácil</span>
+                            </div>
+                            <p class="recipe-description">Uma refeição completa e nutritiva com quinoa, abacate, legumes e um molho especial.</p>
+                            <a href="#" class="btn">Ver Receita</a>
+                            <div class="recipe-tags">
+                                <span class="tag">Sem Glúten</span>
+                                <span class="tag">Vegano</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Receita 2 -->
+                    <div class="recipe-card">
+                        <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Smoothie Verde" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3 class="recipe-title">Smoothie Verde Energético</h3>
+                            <div class="recipe-meta">
+                                <span>⏱ 5 min</span>
+                                <span>🥤 Fácil</span>
+                            </div>
+                            <p class="recipe-description">Comece o dia com energia com este smoothie cheio de nutrientes e sabor.</p>
+                            <a href="#" class="btn">Ver Receita</a>
+                            <div class="recipe-tags">
+                                <span class="tag">Sem Lactose</span>
+                                <span class="tag">Energético</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Receita 3 -->
+                    <div class="recipe-card">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Salada de Grão-de-Bico" class="recipe-img">
+                        <div class="recipe-content">
+                            <h3 class="recipe-title">Salada de Grão-de-Bico</h3>
+                            <div class="recipe-meta">
+                                <span>⏱ 15 min</span>
+                                <span>🥗 Fácil</span>
+                            </div>
+                            <p class="recipe-description">Uma salada proteica e saborosa, perfeita para o almoço ou jantar.</p>
+                            <a href="#" class="btn">Ver Receita</a>
+                            <div class="recipe-tags">
+                                <span class="tag">Rico em Proteínas</span>
+                                <span class="tag">Vegano</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Anúncio entre receitas -->
+            <div class="ad-container">
+                <div class="ad-banner">
+                    <div class="ad-title">PRODUTO RECOMENDADO: Panela Antiaderente</div>
+                    <div class="ad-text">Cozinha saudável sem óleo, perfeita para suas receitas fit</div>
+                    <button class="ad-cta">Compre com 20% OFF</button>
+                </div>
+            </div>
+
+            <!-- Mais receitas -->
+            <div class="recipe-grid">
+                <!-- Receita 4 -->
+                <div class="recipe-card">
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Sopa de Legumes" class="recipe-img">
+                    <div class="recipe-content">
+                        <h3 class="recipe-title">Sopa Cremosa de Abóbora</h3>
+                        <div class="recipe-meta">
+                            <span>⏱ 30 min</span>
+                            <span>🍲 Moderado</span>
+                        </div>
+                        <p class="recipe-description">Uma sopa cremosa e reconfortante, perfeita para os dias mais frios.</p>
+                        <a href="#" class="btn">Ver Receita</a>
+                        <div class="recipe-tags">
+                            <span class="tag">Low Carb</span>
+                            <span class="tag">Sem Lactose</span>
+                        </div>
+                    </div>
+                </div>
+               
